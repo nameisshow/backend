@@ -1,0 +1,9 @@
+{% include 'public/nav.html' %}
+{#{% include 'public/left.html' %}#}
+<ul>
+    {% for data in pageData %}
+        <li><a href="{% url 'button_edit' data.id %}">{{ data.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% include 'public/page.html' %}

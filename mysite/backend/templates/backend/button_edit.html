@@ -1,0 +1,7 @@
+<form action="{% url 'button_edit' info.id %}" method="post">
+    按钮名：<input type="text" value="{{ info.name }}" name="name"/>
+    事件名：<input type="text" value="{{ info.event }}" name="event">
+    排序：<input type="text" value="{{ info.sort }}" name="sort">
+    <input type="hidden" value="{{ info.id }}" name="id">
+    <input type="submit" value="提交"/>
+</form>
