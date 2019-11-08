@@ -15,9 +15,10 @@ def index(request):
 
 def button_list(request, page=1):
     buttons = Button.objects.all()
-    result = helpers.get_page_result(buttons, page, 2)
+    result = helpers.get_page_result(buttons, page, 10)
     context = {'pageData': result}
     context.update({'pageUrl': 'button'})
+    context.update({'pageNow': page})
     return render(request, 'backend/button_list.html', context)
 
 

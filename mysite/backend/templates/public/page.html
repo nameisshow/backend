@@ -1,10 +1,19 @@
 {# 分页元素 #}
-{% if pageData.has_previous %}
-    <span><a href="{% url pageUrl pageData.previous_page_number %}">上一页</a></span>
-{% endif %}
-{% for page in pageData.paginator.page_range %}
-    <span><a href="{% url pageUrl page %}">{{ page }}</a></span>
-{% endfor %}
-{% if pageData.has_next %}
-    <span><a href="{% url pageUrl pageData.next_page_number %}">下一页</a></span>
-{% endif %}
+<div id="page">
+    <div class="layui-box layui-laypage layui-laypage-default">
+        {% if pageData.has_previous %}
+            <a href="{% url pageUrl pageData.previous_page_number %}" class="layui-laypage-prev">上一页</a>
+        {% endif %}
+
+        {% for page in pageData.paginator.page_range %}
+            {% if page == pageNow %}
+                <span class="layui-laypage-curr"><em class="layui-laypage-em"></em><em>{{ page }}</em></span>
+            {% else %}
+                <a href="{% url pageUrl page %}">{{ page }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if pageData.has_next %}
+            <span><a href="{% url pageUrl pageData.next_page_number %}" class="layui-laypage-next">下一页</a></span>
+        {% endif %}
+    </div>
+</div>

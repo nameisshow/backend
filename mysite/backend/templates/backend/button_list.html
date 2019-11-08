@@ -1,9 +1,77 @@
-{% include 'public/nav.html' %}
-{#{% include 'public/left.html' %}#}
-<ul>
-    {% for data in pageData %}
-        <li><a href="{% url 'button_edit' data.id %}">{{ data.name }}</a></li>
-    {% endfor %}
-</ul>
-
-{% include 'public/page.html' %}
+{% extends 'public/base.html' %}
+{% block title %}后台管理-按钮管理{% endblock title %}
+{% block mycontainer %}
+    <div class="layui-body mycontainer">
+        {# 内容主体区域 #}
+        {# 百分百适配 #}
+        <div class="layui-fluid">
+            {# 位置显示-面包屑导航 #}
+            <div class="layui-row layui-bg-gray button_nav">
+                <span><b>位置：</b></span>
+                <span class="layui-breadcrumb" style="visibility: visible;">
+                  <a href="javascript:void(0)">系统管理</a><span lay-separator="">/</span>
+                  <a href="javascript:void(0)">按钮管理</a><span lay-separator="">/</span>
+                  <a href="javascript:void(0)"><cite>按钮列表</cite></a>
+            </span>
+            </div>
+            {# 操作栏 #}
+            <table class="layui-table button_opear" lay-skin="line">
+                <tr>
+                    {# 加载按钮 #}
+{#                    {include file='/public/button' /}#}
+                    <td>
+                        <form class="layui-form" action="/admin.php/Category/cateList" method="get">
+                            <div class="layui-form-item">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="button_name" value="{$search.button_name}" lay-verify="required"
+                                           placeholder="请输入按钮名" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="button_event" value="{$search.button_event}" lay-verify="required"
+                                           placeholder="请输入按钮事件" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-input-inline">
+                                    <button class="layui-btn">搜索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <!--分割线-->
+            <hr>
+            <!--数据集-->
+            <table class="layui-table" lay-even>
+                <colgroup>
+                    <col width="10">
+                    <col width="100">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <td></td>
+                    <td>按钮id</td>
+                    <td>按钮名</td>
+                    <td>按钮事件</td>
+                    <td>按钮排序</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in pageData %}
+                    <tr id="{{ data.id }}">
+                        <td><input type="checkbox" data-id="{{ data.id }}" class="primary" lay-skin="primary"/></td>
+                        <td>{{ data.id }}</td>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.event }}()</td>
+                        <td>{{ data.sort }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {# 分割线 #}
+            <hr>
+            {# 分页 #}
+            {% include 'public/page.html' %}
+        </div>
+    </div>
+{% endblock mycontainer %}
