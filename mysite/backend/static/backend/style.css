@@ -1,5 +1,323 @@
-* {
-    margin: 0 0;
-    padding: 0 0;
-    border: 0;
+textarea {
+    padding:5px;
+}
+.mycontainer{
+
+}
+.mycontainer #page{
+    float: right;
+}
+.button_nav{
+    height:30px;
+    padding:5px;
+    line-height:30px;
+    margin-left:-12px;
+}
+
+.button_opear,hr{
+    margin-left:-12px;
+}
+
+.button_opear td{
+    /*display: inline;*/
+    /*height:50px;*/
+}
+.button_opear button{
+    font-size:14px;
+}
+
+.button_opear .layui-form-item{
+    margin-bottom:0px;
+}
+
+.dataSet td{
+    /*text-align: center;*/
+}
+
+.treeHide{
+    display: none;
+}
+.treeDown{
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+
+}
+
+.assignButton{
+    margin-left: -10px;
+}
+.assignButton a{
+    margin-bottom:10px;
+    margin-left:10px;
+}
+.moduleTreeInRole{
+    background: #ccc;
+    max-height:350px;
+    padding: 10px;
+    overflow: auto;
+}
+.moduleTreeInRole .layui-input-block{
+    min-height: 20px;
+    margin:5px 0px;
+}
+
+.prevButton .moduleTreeInRole{
+    width:30%;
+    height:350px;
+    overflow: auto;
+}
+.prevButton .moduleTreeInRole .layui-input-block:hover{
+    cursor: pointer;
+    color: #fff;
+}
+.whiteFont{
+    color: #fff;
+}
+.prevButton .buttonBlock{
+    width:60%;
+    height:350px;
+    /*margin-left:10px;*/
+    padding:10px 0px;
+    border:1px solid silver;
+}
+.prevButton .buttonBlock a{
+    margin:5px 10px;
+}
+.prevButton .buttonBlock a:hover{
+
+
+}
+
+
+
+.inputlabel{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color:blue;
+}
+
+/**
+表格
+ */
+
+.loginBlock{
+    width:500px;
+    height:230px;
+    background: #fff;
+    opacity: 0.8;
+    position: absolute;
+    left:300px;
+    top:250px;
+    border-radius: 5px;
+    padding:10px;
+    display: none;
+}
+.loginTitle{
+    margin:20px 0px;
+}
+
+
+/**
+是或否
+ */
+.yes{
+    color: green;
+}
+.no{
+    color: red;
+}
+.normal{
+    color: blue;
+}
+
+/**
+banner管理页面
+ */
+.banner-continer{
+    width:100%;
+}
+.banner-div{
+    width:40%;
+    float: left;
+    margin-right:8%;
+
+}
+.banner-div img{
+    width: 100%;
+    height: 100%;
+    border:1px solid silver;
+}
+.banner-tool{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.banner-tool button{
+    text-align: center;
+}
+.banner-tool .explain{
+    vertical-align: bottom;
+    margin-left:10px;
+}
+
+/**
+poster管理页面
+ */
+
+.poster-continer{
+    width:100%;
+}
+.poster-div{
+    width:20%;
+    float: left;
+    margin-right:4%;
+}
+
+.poster-div img{
+    width: 100%;
+    height: 100%;
+    border:1px solid silver;
+}
+.poster-tool{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.poster-tool .explain{
+    vertical-align: bottom;
+    margin-left:10px;
+}
+
+.poster-div .poster-name{
+    margin-top:10px;
+}
+.poster-name input{
+    width:60%;
+}
+
+/**
+上传文件的遮罩层
+ */
+.cover{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 999;
+    opacity: 0.2;
+    display: none;
+}
+
+/**
+商家页面的css
+ */
+.clearleft{
+    margin: 10px;
+    float: left;
+}
+.clearleft label{
+    float: left;
+    width:100px;
+    line-height: 38px;
+}
+.clearleft input{
+    width:300px;
+}
+.clearleft select{
+    width:100px;
+}
+
+.detailAddress,.select-label, .userPhone{
+    position: absolute;
+    width: 298px;
+    margin-left: 100px;
+    z-index: 100;
+    border: 1px solid silver;
+    /*padding: 10px;*/
+    background: white;
+    padding:3px 0px;
+}
+.detailAddress p, .select-label p, .userPhone p{
+    height: 34px;
+    line-height: 34px;
+    padding-left:10px;
+}
+.in-address-p{
+    background: rgb(242,242,242);
+    cursor: pointer;
+    margin-left:1px;
+}
+.checkAddress{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background: rgb(111,183,55);
+    padding:5px;
+    cursor: pointer;
+}
+.checkAddress:hover{
+    color: white;
+}
+.wait-delete{
+    position: relative;
+    float: left;
+}
+.wait-delete p{
+    position: absolute;
+    bottom: 0px;
+    background: black;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    color: white;
+    text-align: center;
+    opacity: 0.7;
+    cursor: pointer;
+}
+.wait-delete p:hover{
+    color: red;
+    font-weight: 600;
+}
+.custom-edge{
+    border-top-color: #c2c2c2;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+.trun{
+    transform:rotate(180deg);
+}
+#label{
+    width: 300px;
+    height: 36px;
+    margin-left: 100px;
+    border: 1px solid #e2e2e2;
+}
+.norms-select{
+    width: 300px;
+    height: 36px;
+    margin-left: 100px;
+    border: 1px solid #e2e2e2;
+}
+.label-span{
+    padding: 5px;
+    border: 1px solid red;
+    display: inline;
+    line-height: 36px;
+    background: lightgoldenrodyellow;
+    margin-left:5px;
+}
+.label-name{
+    padding-right:5px;
+}
+.label-delete{
+    cursor: pointer;
+    background: #000;
+    color: white;
+    padding:0px 5px;
+}
+.label-delete:hover{
+    background: white;
+    color: black;
 }
