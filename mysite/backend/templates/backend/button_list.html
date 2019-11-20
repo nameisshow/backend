@@ -17,8 +17,10 @@
             {# 操作栏 #}
             <table class="layui-table button_opear" lay-skin="line">
                 <tr>
+
                     {# 加载按钮 #}
-{#                    {include file='/public/button' /}#}
+                    {% include 'public/button.html' %}
+
                     <td>
                         <form class="layui-form" action="/admin.php/Category/cateList" method="get">
                             <div class="layui-form-item">
@@ -74,4 +76,36 @@
             {% include 'public/page.html' %}
         </div>
     </div>
+
+    <script>
+        function add(){
+            var msg = '修改按钮信息';
+            var url = '/backend/button_add/';
+            var area = ['400px','400px'];
+            pro.dialog(msg, url, area);
+        }
+
+
+        function upd() {
+            var primary = pro.getPrimaryKey(1);
+            if(primary){
+                var msg = '修改按钮信息';
+                var url = '/backend/button_edit/'+primary+'/';
+                var area = ['400px','400px'];
+                pro.dialog(msg, url, area);
+            }
+        }
+
+
+        function del() {
+            var primary = pro.getPrimaryKey();
+            if(primary){
+                var msg = '是否删除';
+                var url = '/backend/button_delete/'+primary+'/';
+                var data = {primary:primary};
+                pro.message(msg, url, data);
+            }
+        }
+    </script>
+
 {% endblock mycontainer %}

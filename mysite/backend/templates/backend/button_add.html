@@ -1,0 +1,62 @@
+{% extends 'public/dialog_base.html' %}
+{% block title %}后台管理-按钮管理{% endblock title %}
+{% block mycontainer %}
+    <div class="layui-body mycontainer">
+        <!-- 内容主体区域 -->
+        <!--百分百适配-->
+        <div class="layui-fluid">
+            <form class="layui-form" action="{% url pageUrl %}" method="post" onsubmit="return checkForm()">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <label class="inputlabel" for="name">按钮名：</label>
+                        <input type="text" id="name" name="name" lay-verify="required" placeholder="请输入按钮名" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-block">
+                        <label class="inputlabel" for="event">按钮事件：</label>
+                        <input type="text" id="event" name="event" lay-verify="required" placeholder="请输入按钮事件" autocomplete="off" class="layui-input">
+                    </div>
+                    <!--<div class="layui-input-block">-->
+                    <!--<select name="button_type" required lay-verify="required">-->
+                    <!--<option value="">请选择按钮类型</option>-->
+                    <!--<option value="ajax">ajax</option>-->
+                    <!--<option value="iframe">iframe</option>-->
+                    <!--<option value="href">href</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <div class="layui-input-block">
+                        <label class="inputlabel" for="sort">按钮排序：</label>
+                        <input type="text" id="sort" name="sort"  lay-verify="required" placeholder="请输入按钮排序" autocomplete="off" class="layui-input">
+                    </div>
+{#                    <div class="layui-input-block">#}
+{#                        <label class="inputlabel" for="button_desc">按钮描述：</label>#}
+{#                        <input type="text" id="button_desc" name="button_desc"  lay-verify="required" placeholder="请输入按钮描述" autocomplete="off" class="layui-input">#}
+{#                    </div>#}
+                    <div class="layui-input-block buttons">
+                        <button class="layui-btn ok">确认</button>
+                        <button class="layui-btn no">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        $ = layui.jquery;
+
+        function checkForm(){
+            var name = $('input[name=name]').val();
+            if(!name){
+                alert('请填写按钮名称');
+                return false;
+            }
+            var event = $('input[name=event]').val();
+            if(!event){
+                alert('请填写按钮事件');
+                return false;
+            }
+            pro.closeSelf();
+            pro.flushTop();
+            return true
+        }
+    </script>
+{% endblock mycontainer %}
