@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from backend import helpers
+from backend.helpers import SuccessResponseJson, ErrorResponseJson
 from backend.models import Button
 
 
@@ -13,6 +14,12 @@ def index(request):
 
 
 def button_list(request, page=1):
+    """
+    按钮列表
+    :param request:
+    :param page:
+    :return:
+    """
     buttons = Button.objects.all()
     result = helpers.get_page_result(buttons, page, 10)
     context = {'pageData': result}
@@ -22,23 +29,29 @@ def button_list(request, page=1):
 
 
 def button_add(request):
+    """
+    添加按钮
+    :param request:
+    :return:
+    """
     if request.method == 'POST':
         name = request.POST.get('name', '')
         event = request.POST.get('event', '')
-        sort = request.POST.get('sort', 0)
+        sort = request.POST.get('sort', None) if request.POST.get('sort', 0) else 0
         error_message = None
         if name == '':
             error_message = '按钮名不能为空'
         if event == '':
             error_message = '按钮事件名不能为空'
         if error_message is not None:
-            raise Http404(error_message)
-
+            return ErrorResponseJson(error_message)()
         button = Button(name=name, event=event, type='', sort=sort)
-        button.save()
-        print('****************************')
-
-        return HttpResponseRedirect(reverse('button', args=()))
+        try:
+            button.save()
+        except IntegrityError as e:
+            print(e)
+            return ErrorResponseJson('唯一字段重复')()
+        return SuccessResponseJson('success')()
     else:
         context = {}
         context.update({'pageUrl': 'button_add'})
@@ -76,6 +89,12 @@ def button_edit(request, pk):
 
 
 def button_delete(request, pk):
+    """
+    删除按钮
+    :param request:
+    :param pk:
+    :return:
+    """
     if not pk:
         raise Http404('删除错误，参数为空')
     rows, _ = Button.objects.filter(pk=pk).delete()

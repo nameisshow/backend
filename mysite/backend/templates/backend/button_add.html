@@ -43,20 +43,17 @@
 
         $ = layui.jquery;
 
-        function checkForm(){
+        function checkForm() {
             var name = $('input[name=name]').val();
-            if(!name){
+            if (!name) {
                 alert('请填写按钮名称');
                 return false;
             }
             var event = $('input[name=event]').val();
-            if(!event){
+            if (!event) {
                 alert('请填写按钮事件');
                 return false;
             }
-            {#pro.closeSelf();#}
-            {#pro.flushTop();#}
-            {#return true#}
         }
     </script>
 {% endblock mycontainer %}

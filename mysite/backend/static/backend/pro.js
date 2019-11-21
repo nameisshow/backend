@@ -143,8 +143,8 @@ var pro = (function (layui) {
 
     /********dialog相关**********/
     //点击确定和关闭按钮
-    $('.ok').click(function(){
-        alert(1);
+    // $('.on').click(function(){
+    $(document).on('click', '.ok', function(){
         var url = $('#form').attr('data-action');
         //数据验证，调用iframe页面的验证方法
         var error = checkForm();
@@ -160,7 +160,7 @@ var pro = (function (layui) {
         toAjaxInDialog(url,data);
 
     });
-    $('.no').click(function(){
+    $(document).on('click', '.no', function(){
         closeSelf();
         return false;
     });
@@ -229,8 +229,8 @@ var pro = (function (layui) {
             type: 'post',
             datatype: 'json',
             success: function (res) {
-                var res = eval('(' + res + ')');
-                if (res.status != 100) {
+                console.log(res);
+                if (parseInt(res.status) != 200) {
                     layer.alert(res.msg);
                 } else {
                     //操作成功，关闭当前ifram
