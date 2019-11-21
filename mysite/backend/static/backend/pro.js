@@ -144,6 +144,7 @@ var pro = (function (layui) {
     /********dialog相关**********/
     //点击确定和关闭按钮
     $('.ok').click(function(){
+        alert(1);
         var url = $('#form').attr('data-action');
         //数据验证，调用iframe页面的验证方法
         var error = checkForm();

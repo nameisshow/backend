@@ -5,7 +5,7 @@
         <!-- 内容主体区域 -->
         <!--百分百适配-->
         <div class="layui-fluid">
-            <form class="layui-form" action="{% url pageUrl %}" method="post" onsubmit="return checkForm()">
+            <form class="layui-form" id="form" data-action="{% url pageUrl %}" action="javascript:void(0)" method="post">
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <label class="inputlabel" for="name">按钮名：</label>
@@ -54,9 +54,9 @@
                 alert('请填写按钮事件');
                 return false;
             }
-            pro.closeSelf();
-            pro.flushTop();
-            return true
+            {#pro.closeSelf();#}
+            {#pro.flushTop();#}
+            {#return true#}
         }
     </script>
 {% endblock mycontainer %}

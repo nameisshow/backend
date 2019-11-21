@@ -36,8 +36,9 @@ def button_add(request):
 
         button = Button(name=name, event=event, type='', sort=sort)
         button.save()
+        print('****************************')
 
-        return HttpResponse()
+        return HttpResponseRedirect(reverse('button', args=()))
     else:
         context = {}
         context.update({'pageUrl': 'button_add'})
