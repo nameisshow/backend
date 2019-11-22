@@ -8,14 +8,14 @@ var pro = (function (layui) {
     /*********数据表格选择************/
         //所有被选中的id
     var primaryArray = [];
-    $('.primary').click(function () {
+    $(document).on('click', '.primary', function(){
         if ($(this).is(":checked")) {
             primaryArray.push(parseInt($(this).attr('data-id')));
         } else {
             deleteElem(primaryArray, parseInt($(this).attr('data-id')));
         }
     });
-    $('.allSelect').click(function(){
+    $(document).on('click','.allSelect',function(){
         if ($(this).is(":checked")) {
             $(this).parents('table').find('tbody').children('tr').each(function (index) {
                 $(this).find('td').find('input').prop('checked','checked');
@@ -169,7 +169,7 @@ var pro = (function (layui) {
     /*************模块部分树状菜单*************/
     //TODO
     //有bug
-    $('.moduleTree').click(function(){
+    $(document).on('click','.moduleTree',function(){
         $(this).find('img').toggleClass('treeDown');
         var module_id = parseInt($(this).attr('data-id'));
         toHide(module_id,$(this));
@@ -206,8 +206,7 @@ var pro = (function (layui) {
             type: 'post',
             datatype: 'json',
             success: function (res) {
-                var res = eval('(' + res + ')');
-                if (res.status != 100) {
+                if (parseInt(res.status != 200)) {
                     layer.alert(res.msg);
                     return false;
                 } else {
@@ -306,9 +305,7 @@ var pro = (function (layui) {
         dialog: dialog,
         alert:layerAlert,
         load:layerLoad,
-        closeLayer:layerClose,
-        closeSelf: closeSelf,
-        flushTop: flushTop
+        closeLayer:layerClose
     }
 
 

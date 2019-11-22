@@ -1,3 +1,4 @@
+from django.db import models
 from django.http import JsonResponse
 
 
@@ -32,6 +33,9 @@ def get_response_json_data(status: bool, msg: str, data=None, level=0):
 
 
 class SuccessResponseJson(object):
+    """
+    返回正确的json
+    """
     def __init__(self, msg='', data=None):
         self.res = get_response_json_data(True, msg, data)
 
@@ -46,6 +50,9 @@ class SuccessResponseJson(object):
 
 
 class ErrorResponseJson(object):
+    """
+    返回错误的json
+    """
     def __init__(self, msg='', data=None, level=0):
         self.res = get_response_json_data(False, msg, data, level=level)
 
@@ -57,3 +64,11 @@ class ErrorResponseJson(object):
 
     def __repr__(self):
         return self.res
+
+
+def append_attr():
+    def db_print(self, **kwargs):
+        res = self.get(**kwargs)
+        return {'id': res.id, 'name': res.name, 'event': res.event, 'type': res.type, 'sort': res.sort}
+
+    models.Manager.print = db_print

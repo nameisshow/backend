@@ -1,6 +1,12 @@
 from django.db import models
 
 
+class ButtonManager(models.Manager):
+    def print(self, **kwargs):
+        res = self.get(**kwargs)
+        return {'id': res.id, 'name': res.name, 'event': res.event, 'type': res.type, 'sort': res.sort}
+
+
 class Button(models.Model):
     """
     按钮表
@@ -10,6 +16,14 @@ class Button(models.Model):
     event = models.CharField(max_length=32, unique=True, help_text='按钮所对应的js方法名')
     type = models.CharField(max_length=32, default='', help_text='按钮触发的操作类型')
     sort = models.IntegerField(default=0, help_text='排序')
+    objects = ButtonManager()
+
+    def __str__(self):
+        self.objects.get()
+        print({'id': self.id, 'name': self.name, 'type': self.type, 'sort': self.sort})
+
+
+
 
 
 class Module(models.Model):

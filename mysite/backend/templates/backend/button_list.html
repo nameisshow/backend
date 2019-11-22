@@ -22,14 +22,14 @@
                     {% include 'public/button.html' %}
 
                     <td>
-                        <form class="layui-form" action="/admin.php/Category/cateList" method="get">
+                        <form class="layui-form" action="{% url pageUrl %}" method="get">
                             <div class="layui-form-item">
                                 <div class="layui-input-inline">
-                                    <input type="text" name="button_name" value="{$search.button_name}" lay-verify="required"
+                                    <input type="text" name="name" value="{{ search.name }}" lay-verify="required"
                                            placeholder="请输入按钮名" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="button_event" value="{$search.button_event}" lay-verify="required"
+                                    <input type="text" name="event" value="{{ search.event }}" lay-verify="required"
                                            placeholder="请输入按钮事件" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-input-inline">

@@ -20,11 +20,26 @@ def button_list(request, page=1):
     :param page:
     :return:
     """
-    buttons = Button.objects.all()
+    name = request.GET.get('name', '')
+    event = request.GET.get('event', '')
+    where = search = {}
+    if name:
+        where.update({'name': name})
+        search.update({'name': name})
+    if event:
+        where.update({'event': event})
+        search.update({'event': event})
+    if len(where) > 0:
+        buttons = Button.objects.filter(**where)
+    else:
+        buttons = Button.objects.all()
+    # buttons = Button.objects.get(pk=5)
+    print(Button.objects.print(pk=5))
     result = helpers.get_page_result(buttons, page, 10)
     context = {'pageData': result}
     context.update({'pageUrl': 'button'})
     context.update({'pageNow': page})
+    context.update({'search': search})
     return render(request, 'backend/button_list.html', context)
 
 
@@ -96,8 +111,8 @@ def button_delete(request, pk):
     :return:
     """
     if not pk:
-        raise Http404('删除错误，参数为空')
+        return ErrorResponseJson('删除错误，参数为空')()
     rows, _ = Button.objects.filter(pk=pk).delete()
     if rows == 0:
-        raise Http404('没有内容被删除')
-    return HttpResponseRedirect(reverse('button', args=()))
+        return ErrorResponseJson('没有内容被删除')()
+    return SuccessResponseJson('success')()
