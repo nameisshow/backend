@@ -1,0 +1,55 @@
+{% extends 'public/dialog_base.html' %}
+{% block title %}后台管理-按钮管理{% endblock title %}
+{% block mycontainer %}
+    <div class="layui-body mycontainer">
+        <!-- 内容主体区域 -->
+        <!--百分百适配-->
+        <div class="layui-fluid">
+            <form class="layui-form" id="form" data-action="{% url pageUrl info.id %}" action="javascript:void(0)" method="post">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <label class="inputlabel" for="name">模块名字：</label>
+                        <input type="text" name="name" id="name" lay-verify="required" value="{{ info.name }}" placeholder="请输入模块名" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-block">
+                        <label class="inputlabel" for="pid">父级模块：</label>
+                        <select name="pid" id="pid" required lay-verify="required" style="display: block;">
+                            <option value="0">请选择父级模块</option>
+                            {% for mt in modules %}
+                                <option value="{{ mt.id }}" {% if mt.id == info.pid %}selected{% endif %} >{{ mt.name }}</option>
+                                {% for mm in mt.module_middle %}
+                                    <option value="{{ mm.id }}" {% if mm.id == info.pid %}selected{% endif %}>&nbsp;&nbsp;&nbsp;&nbsp;{{ mm.name }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="layui-input-block">
+                        <label class="inputlabel" for="url">模块链接：</label>
+                        <input type="text" name="url" id="url" lay-verify="required" value="{{ info.url }}" placeholder="请输入模块链接" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-block">
+                        <label class="inputlabel" for="sort">模块排序：</label>
+                        <input type="text" name="sort" id="sort" lay-verify="required" value="{{ info.sort }}" placeholder="请输入模块排序" autocomplete="off" class="layui-input">
+                    </div>
+                    <input type="hidden" name="id" value="{{ info.id }}">
+                    <div class="layui-input-block buttons">
+                        <button class="layui-btn ok">确认</button>
+                        <button class="layui-btn no">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        $ = layui.jquery;
+
+        function checkForm() {
+            var name = $('input[name=name]').val();
+            if (!name) {
+                alert('请填写按钮名称');
+                return false;
+            }
+        }
+    </script>
+{% endblock mycontainer %}

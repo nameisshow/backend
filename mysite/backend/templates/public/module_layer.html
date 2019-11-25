@@ -1,0 +1,20 @@
+<tr id="{{ data.id }}">
+    <td><input type="checkbox" data-id="{{ data.id }}" class="primary" lay-skin="primary"/></td>
+    <td>{{ data.id }}</td>
+    <td>
+        {% if data.level == 1 %}
+            |
+        {% elif data.level == 2 %}
+            |——
+        {% elif data.level == 3 %}
+            |————
+        {% endif %}
+        {{ data.name }}
+    </td>
+    <td>
+        {{ data.get_level_display }}
+    </td>
+    <td>{{ data.url }}</td>
+    <td>{{ data.buttons_str }}</td>
+    <td>{{ data.sort }}</td>
+</tr>

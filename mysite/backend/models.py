@@ -23,17 +23,27 @@ class Button(models.Model):
         print({'id': self.id, 'name': self.name, 'type': self.type, 'sort': self.sort})
 
 
-
+class ModuleManager(models.Manager):
+    pass
 
 
 class Module(models.Model):
     """
     模块表
     """
+    MODULE_LEVEL_TOP = 1
+    MODULE_LEVEL_MIDDLE = 2
+    MODULE_LEVEL_LOW = 3
+    MODULE_LEVEL = (
+        (MODULE_LEVEL_TOP, '顶级菜单'),
+        (MODULE_LEVEL_MIDDLE, '中级菜单'),
+        (MODULE_LEVEL_LOW, '末级菜单')
+    )
     # mid = models.AutoField(verbose_name='ID', primary_key=True)
     name = models.CharField(max_length=32, unique=True, help_text='模块名')
     pid = models.IntegerField(default=0, help_text='模块父级id')
     sort = models.IntegerField(default=0, help_text='排序')
+    level = models.SmallIntegerField(default=0, choices=MODULE_LEVEL)
     buttons = models.ManyToManyField(Button)
     url = models.CharField(default='', max_length=128, help_text='模块链接')
 

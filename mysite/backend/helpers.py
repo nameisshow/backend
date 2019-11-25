@@ -72,3 +72,15 @@ def append_attr():
         return {'id': res.id, 'name': res.name, 'event': res.event, 'type': res.type, 'sort': res.sort}
 
     models.Manager.print = db_print
+
+
+def dict_fetchall(cursor):
+    """
+    :param cursor:
+    :return:
+    """
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]

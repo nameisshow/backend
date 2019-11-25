@@ -1,0 +1,107 @@
+{% extends 'public/base.html' %}
+{% block title %}后台管理-按钮管理{% endblock title %}
+{% block mycontainer %}
+    <div class="layui-body mycontainer">
+        {# 内容主体区域 #}
+        {# 百分百适配 #}
+        <div class="layui-fluid">
+            {# 位置显示-面包屑导航 #}
+            <div class="layui-row layui-bg-gray button_nav">
+                <span><b>位置：</b></span>
+                <span class="layui-breadcrumb" style="visibility: visible;">
+                  <a href="javascript:void(0)">系统管理</a><span lay-separator="">/</span>
+                  <a href="javascript:void(0)">模块管理</a><span lay-separator="">/</span>
+                  <a href="javascript:void(0)"><cite>模块列表</cite></a>
+            </span>
+            </div>
+            {# 操作栏 #}
+            <table class="layui-table button_opear" lay-skin="line">
+                <tr>
+
+                    {# 加载按钮 #}
+                    {% include 'public/button.html' %}
+
+                </tr>
+            </table>
+            <!--分割线-->
+            <hr>
+            <!--数据集-->
+            <table class="layui-table" lay-even>
+                <colgroup>
+                    <col width="10">
+                    <col width="100">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <td></td>
+                    <td>模块id</td>
+                    <td>模块名</td>
+                    <td>模块层级</td>
+                    <td>模块连接</td>
+                    <td>模块按钮</td>
+                    <td>模块排序</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in pageData %}
+                    {% include 'public/module_layer.html' with data=data %}
+                    {% for mm in data.module_middle %}
+                        {% include 'public/module_layer.html' with data=mm %}
+                        {% for ml in mm.module_low %}
+                            {% include 'public/module_layer.html' with data=ml %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+            {# 分割线 #}
+            <hr>
+            {# 分页 #}
+            {% include 'public/page.html' %}
+        </div>
+    </div>
+
+    <script>
+        function add(){
+            var msg = '添加模块信息';
+            var url = '/backend/module_add/';
+            var area = ['400px','400px'];
+            pro.dialog(msg, url, area);
+        }
+
+
+        function edit() {
+            var primary = pro.getPrimaryKey(1);
+            if(primary){
+                var msg = '修改模块信息';
+                var url = '/backend/module_edit/'+primary+'/';
+                var area = ['400px','400px'];
+                pro.dialog(msg, url, area);
+            }
+        }
+
+
+        function del() {
+            var primary = pro.getPrimaryKey();
+            if(primary){
+                var msg = '是否删除';
+                var url = '/backend/module_delete/'+primary+'/';
+                var data = {primary:primary};
+                pro.message(msg, url, data);
+            }
+        }
+
+        function assign() {
+            var primary = parseInt(pro.getPrimaryKey(1));
+            if(primary){
+                var msg = '分配按钮';
+                var url = '/backend/module_assign_button/'+primary+'/';
+                alert(url);
+                var area = ['400px','500px'];
+                pro.dialog(msg, url, area);
+            }
+        }
+    </script>
+
+{% endblock mycontainer %}
